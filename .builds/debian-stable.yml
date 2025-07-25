@@ -1,0 +1,18 @@
+image: debian/stable
+packages:
+- emacs-nox
+sources:
+- https://git.sr.ht/~shoshin/minitest-emacs
+- https://github.com/cask/cask
+tasks:
+- setup: |
+    mkdir -p .local/bin
+    make -C cask install
+    export PATH="$HOME/.local/bin:$PATH"
+    cd $HOME/minitest-emacs
+    cask install
+- run-tests: |
+    export PATH="$HOME/.local/bin:$PATH"
+    cd $HOME/minitest-emacs
+    cask exec ert-runner
+triggers: []

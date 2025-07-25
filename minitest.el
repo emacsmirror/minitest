@@ -1,4 +1,4 @@
-;;; minitest.el --- An minor mode for ruby minitest files
+;;; minitest.el --- An minor mode for ruby minitest files -*- lexical-binding:t -*-
 
 ;; SPDX-License-Identifier: MIT
 ;; Copyright © 2013-2015 Arthur Nogueira Neves

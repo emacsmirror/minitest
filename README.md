@@ -2,6 +2,8 @@
 ### A minitest mode for emacs
 
 [![MELPA](https://melpa.org/packages/minitest-badge.svg)](https://melpa.org/#/minitest)
+[![builds.sr.ht status](https://builds.sr.ht/~shoshin/minitest-emacs/commits/main/debian-testing.yml.svg)](https://builds.sr.ht/~shoshin/minitest-emacs/commits/main/debian-testing.yml?)
+[![builds.sr.ht status](https://builds.sr.ht/~shoshin/minitest-emacs/commits/main/debian-stable.yml.svg)](https://builds.sr.ht/~shoshin/minitest-emacs/commits/main/debian-stable.yml?)
 
 # Usage
 

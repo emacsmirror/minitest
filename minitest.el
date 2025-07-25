@@ -1,5 +1,6 @@
 ;;; minitest.el --- An minor mode for ruby minitest files
 
+;; SPDX-License-Identifier: MIT
 ;; Copyright © 2013-2015 Arthur Nogueira Neves
 ;; Copyright © 2020 Grant Shoshin Shangreaux
 

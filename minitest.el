@@ -66,7 +66,7 @@ This is intended for use with Rails versions 5+."
 
 (defcustom minitest-docker-command '("docker-compose" "exec")
   "Command to execute tests with docker."
-  :type 'list
+  :type '(list string)
   :group 'minitest)
 
 (defcustom minitest-docker-container nil
@@ -81,12 +81,12 @@ This is intended for use with Rails versions 5+."
 
 (defcustom minitest-default-command '("ruby" "-Ilib:test:spec")
   "Default command for minitest."
-  :type 'list
+  :type '(list string)
   :group 'minitest)
 
 (defcustom minitest-spring-command '("spring" "rake" "test")
   "Spring command for minitest."
-  :type 'list
+  :type '(list string)
   :group 'minitest)
 
 (defcustom minitest-test-directory-name "test"
@@ -96,7 +96,7 @@ This is intended for use with Rails versions 5+."
 
 (defcustom minitest-source-directory-names '("app" "lib")
   "The folder names within `minitest-project-root' that hold the source code."
-  :type 'list
+  :type '(list string)
   :group 'minitest)
 
 (defun minitest-buffer-name (file-or-dir)
@@ -154,7 +154,7 @@ The current directory is assumed to be the project's root otherwise."
     (compilation-start
      actual-command
      'minitest-compilation-mode
-     (lambda (arg) (minitest-buffer-name (or file-name ""))))))
+     (lambda (_arg) (minitest-buffer-name (or file-name ""))))))
 
 (defun minitest--file-command (&optional post-command)
   "Run POST-COMMAND on currently visited file."

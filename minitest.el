@@ -132,7 +132,7 @@ The current directory is assumed to be the project's root otherwise."
        (file-exists-p (concat (minitest-project-root) ".zeus.sock"))))
 
 (define-derived-mode minitest-compilation-mode compilation-mode ""
-  (add-hook 'compilation-filter-hook 'minitest-colorize-compilation-buffer))
+  (add-hook 'compilation-filter-hook #'minitest-colorize-compilation-buffer))
 
 (defun minitest-colorize-compilation-buffer ()
   "Apply ansi color on the compilation buffer."
@@ -188,10 +188,10 @@ Sets the `match-string' and returns the point where the match begins or nil."
 (defun minitest--extract-test ()
   "Find the nearest test name matching one of the `minitest--test-regexps'.
 Returns a (CMD . NAME) pair or nil."
-  (let* ((matches (delete nil (mapcar 'minitest--match-point minitest--test-regexps)))
+  (let* ((matches (delete nil (mapcar #'minitest--match-point minitest--test-regexps)))
          (distances (mapcar (lambda (pos) (- (point) pos)) matches)))
     (if distances
-        (let ((closest (cl-position (apply 'min distances) distances)))
+        (let ((closest (cl-position (apply #'min distances) distances)))
           (minitest--match-point (nth closest minitest--test-regexps))
           `(,(match-string 1) . ,(match-string 2))))))
 
@@ -212,9 +212,9 @@ Returns a (CMD . NAME) pair or nil."
   "Run all test examples in the current project."
   (interactive)
   (minitest--run-command
-    (mapconcat 'shell-quote-argument
+    (mapconcat #'shell-quote-argument
                (-flatten
-                (--remove (eq nil it)
+                (--remove (not it)
                  (list (minitest-bundler-command) "rake"))) " ")))
 
 (defun minitest-verify ()
@@ -247,9 +247,9 @@ Returns a (CMD . NAME) pair or nil."
   (let ((bundle (minitest-bundler-command))
         (command (minitest-test-command)))
     (minitest--run-command
-     (mapconcat 'shell-quote-argument
+     (mapconcat #'shell-quote-argument
 		(-flatten
-		 (--remove (eq nil it)
+		 (--remove (not it)
 			   (list bundle command file-name post-command))) " ")
      file-name)))
 

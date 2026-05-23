@@ -27,6 +27,7 @@
 
 ;;; Code:
 
+(require 'compile)
 (require 'dash)
 (require 'ansi-color)
 (declare-function yas-load-directory "yasnippet")
@@ -131,7 +132,8 @@ The current directory is assumed to be the project's root otherwise."
   (and minitest-use-zeus-when-possible
        (file-exists-p (concat (minitest-project-root) ".zeus.sock"))))
 
-(define-derived-mode minitest-compilation-mode compilation-mode ""
+(define-compilation-mode minitest-compilation-mode "Minitest Compilation"
+  "Compilation mode for minitest output."
   (add-hook 'compilation-filter-hook #'minitest-colorize-compilation-buffer))
 
 (defun minitest-colorize-compilation-buffer ()

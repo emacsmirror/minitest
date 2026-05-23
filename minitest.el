@@ -132,6 +132,13 @@ The current directory is assumed to be the project's root otherwise."
   (and minitest-use-zeus-when-possible
        (file-exists-p (concat (minitest-project-root) ".zeus.sock"))))
 
+(defvar minitest-compilation-error-regexp-alist-alist
+  '((minitest-failure "\\[\\(.*?.rb\\):\\([0-9]+\\)\\]" 1 2 nil 2 1)
+    (minitest-error "^    \\(.*?.rb\\):\\([0-9]+\\):in" 1 2 nil 2 1)))
+
+(defvar minitest-compilation-error-regexp-alist
+  (mapcar 'car minitest-compilation-error-regexp-alist-alist))
+
 (define-compilation-mode minitest-compilation-mode "Minitest Compilation"
   "Compilation mode for minitest output."
   (add-hook 'compilation-filter-hook #'minitest-colorize-compilation-buffer))

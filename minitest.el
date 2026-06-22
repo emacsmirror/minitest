@@ -133,8 +133,10 @@ The current directory is assumed to be the project's root otherwise."
        (file-exists-p (concat (minitest-project-root) ".zeus.sock"))))
 
 (defvar minitest-compilation-error-regexp-alist-alist
-  '((minitest-failure "\\[\\(.*?.rb\\):\\([0-9]+\\)\\]" 1 2 nil 2 1)
-    (minitest-error "^    \\(.*?.rb\\):\\([0-9]+\\):in" 1 2 nil 2 1)))
+  '((minitest-failure
+    "^[ \t]*\\([[:alnum:]_:]+#[[:alnum:]_?!]+\\) \\[\n?\\([^:]+\\.rb\\):\\([0-9]+\\)\\]:"
+    2 3 nil 2 2 (1 font-lock-function-name-face))
+    (minitest-error "^[ \t]+\\(.*\\.rb\\):\\([0-9]+\\):in" 1 2 nil 2 1)))
 
 (defvar minitest-compilation-error-regexp-alist
   (mapcar 'car minitest-compilation-error-regexp-alist-alist))
